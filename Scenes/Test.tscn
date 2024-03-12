@@ -1,0 +1,25 @@
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://Materials/GrayChecker.tres" type="Material" id=1]
+[ext_resource path="res://Scenes/Player.tscn" type="PackedScene" id=2]
+
+[sub_resource type="CubeMesh" id=1]
+size = Vector3( 60, 2, 60 )
+
+[sub_resource type="BoxShape" id=2]
+extents = Vector3( 30, 1, 30 )
+
+[node name="Test" type="Spatial"]
+
+[node name="Ground" type="MeshInstance" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1, 0 )
+mesh = SubResource( 1 )
+material/0 = ExtResource( 1 )
+
+[node name="StaticBody" type="StaticBody" parent="Ground"]
+
+[node name="CollisionShape" type="CollisionShape" parent="Ground/StaticBody"]
+shape = SubResource( 2 )
+
+[node name="Player" parent="." instance=ExtResource( 2 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3.6302, 0 )
